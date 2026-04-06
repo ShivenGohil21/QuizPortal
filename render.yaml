@@ -2,7 +2,7 @@ services:
   # Django Backend
   - type: web
     name: quiz-backend
-    runtime: python
+    env: python
     buildCommand: ./build.sh
     startCommand: gunicorn quiz_portal.wsgi:application
     envVars:
@@ -20,7 +20,7 @@ services:
   # React Frontend (Static Site)
   - type: web
     name: quiz-frontend
-    runtime: static
+    env: static
     buildCommand: npm install && npm run build
     publishDir: dist
     baseDir: we/vite-project
