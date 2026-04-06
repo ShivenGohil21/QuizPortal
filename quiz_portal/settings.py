@@ -129,4 +129,4 @@ EMAIL_HOST_PASSWORD = 'uhlk bkhs tnib wnjs'
 
 # The display name and 'From' address shown to users
 # We include both emails in the display name as requested, but specify one for the actual delivery
-DEFAULT_FROM_EMAIL = '"QuizPortal <shivengoil210204@gmail.com, dhruvishchudasama22@gmail.com>"'
+DEFAULT_FROM_EMAIL = '"QuizPortal" <shivengoil210204@gmail.com, dhruvishchudasama22@gmail.com>'

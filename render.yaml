@@ -2,7 +2,7 @@ services:
   # Django Backend
   - type: web
     name: quiz-backend
-    env: python
+    runtime: python
     buildCommand: ./build.sh
     startCommand: gunicorn quiz_portal.wsgi:application
     envVars:
@@ -15,14 +15,14 @@ services:
       - key: DEBUG
         value: "False"
       - key: PYTHON_VERSION
-        value: "3.12.2" # Adjust as needed
+        value: "3.12.2"
 
   # React Frontend (Static Site)
-  - type: static
+  - type: web
     name: quiz-frontend
-    env: static
+    runtime: static
     buildCommand: npm install && npm run build
-    publishDir: dist
+    staticPublishPath: we/vite-project/dist
     rootDir: we/vite-project
     envVars:
       - key: VITE_API_URL
@@ -30,7 +30,6 @@ services:
           name: quiz-backend
           type: web
           property: url
-        # Added /api suffix via frontend logic or environment override
       - key: VITE_SUPABASE_URL
         value: https://schmjafbheslmcrzsrmi.supabase.co
       - key: VITE_SUPABASE_ANON_KEY
