@@ -18,12 +18,12 @@ services:
         value: "3.12.2" # Adjust as needed
 
   # React Frontend (Static Site)
-  - type: web
+  - type: static
     name: quiz-frontend
     env: static
     buildCommand: npm install && npm run build
     publishDir: dist
-    baseDir: we/vite-project
+    rootDir: we/vite-project
     envVars:
       - key: VITE_API_URL
         fromService:
