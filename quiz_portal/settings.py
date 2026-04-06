@@ -124,9 +124,9 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # ⚠️ IMPORTANT: EMAIL_HOST_USER must be exactly ONE email address. 
 # This is the account used to LOG IN to Google's server.
-EMAIL_HOST_USER = 'shivengohil210204@gmail.com'
-EMAIL_HOST_PASSWORD = 'uhlk bkhs tnib wnjs'
+EMAIL_HOST_USER = 'quizportal2122@gmail.com'
+EMAIL_HOST_PASSWORD = 'xcre bnda ijen qrup'
 
 # The display name and 'From' address shown to users
 # We include both emails in the display name as requested, but specify one for the actual delivery
-DEFAULT_FROM_EMAIL = '"QuizPortal" <shivengoil210204@gmail.com, dhruvishchudasama22@gmail.com>'
+DEFAULT_FROM_EMAIL = '"QuizPortal" <quizportal2122@gmail.com>'
