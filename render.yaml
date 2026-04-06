@@ -17,21 +17,6 @@ services:
       - key: PYTHON_VERSION
         value: "3.12.2"
 
-  # React Frontend (Static Site)
-  - type: web
-    name: quiz-frontend
-    runtime: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: we/vite-project/dist
-    rootDir: we/vite-project
-    envVars:
-      - key: VITE_API_URL
-        value: https://quiz-backend.onrender.com/api # Replace this with your actual backend URL after deployment
-      - key: VITE_SUPABASE_URL
-        value: https://schmjafbheslmcrzsrmi.supabase.co
-      - key: VITE_SUPABASE_ANON_KEY
-        value: sb_publishable_JCiHXz2_zJHrA-3LRI8psA_p7Jd3TAL
-
 databases:
   - name: quiz-db
     databaseName: quizportal
