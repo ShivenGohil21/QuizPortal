@@ -26,10 +26,7 @@ services:
     rootDir: we/vite-project
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: quiz-backend
-          type: web
-          property: url
+        value: https://quiz-backend.onrender.com/api # Replace this with your actual backend URL after deployment
       - key: VITE_SUPABASE_URL
         value: https://schmjafbheslmcrzsrmi.supabase.co
       - key: VITE_SUPABASE_ANON_KEY
