@@ -1,13 +1,18 @@
 from pathlib import Path
 from datetime import timedelta
+import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-5*t%0-!xtdtc)4=m#0nxea&6eowzj4m)df1sz(*13uligfb^k='
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Allow all for development, restrict in production
+ALLOWED_HOSTS = ['*']
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,6 +29,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # ✅ Add this at the top
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,10 +58,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'quiz_portal.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+        conn_max_age=600
+    )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -82,6 +88,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -121,4 +129,4 @@ EMAIL_HOST_PASSWORD = 'uhlk bkhs tnib wnjs'
 
 # The display name and 'From' address shown to users
 # We include both emails in the display name as requested, but specify one for the actual delivery
-DEFAULT_FROM_EMAIL = '"QuizPortal <shivengoil210204@gmail.com, dhruvishchudasama22@gmail.com>" <shivengohil210204@gmail.com>'
+DEFAULT_FROM_EMAIL = '"QuizPortal <shivengoil210204@gmail.com, dhruvishchudasama22@gmail.com>"'
